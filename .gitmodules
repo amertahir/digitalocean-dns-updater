@@ -1,0 +1,3 @@
+[submodule "digitalocean-api"]
+	path = digitalocean-api
+	url = https://github.com/amertahir/digitalocean-api.git
