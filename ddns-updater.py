@@ -5,7 +5,7 @@ from urllib.request import urlopen
 import json
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "digitalocean-api"))
+sys.path.append(os.path.realpath(os.path.join(os.path.dirname(__file__), "digitalocean-api")))
 from digitalocean import ClientV2
 
 config = {
@@ -113,8 +113,11 @@ def main():
             print("Cannot find A record " + record + " in " + config['domain'] + ", skipping this record...")
             continue
         try:
-            client.domains.update_domain_record(config['domain'], domain_record['id'],
-                                                {'data': config['record_values'][i]})
+            if domain_record['data'] == config['record_values'][i]:
+                print("No need to update")
+            else:
+                client.domains.update_domain_record(config['domain'], domain_record['id'],
+                                                    {'data': config['record_values'][i]})
         except:
             print("Cannot update " + record + " in " + config['domain'] + ", skipping this record...")
             continue
