@@ -23,7 +23,7 @@ def parse_arguments():
     parser.add_argument('records', help='list of A records to update, e.g. "remote, pc"')
     parser.add_argument('--record-values',
                         help='assign records to these values instead of external (public) IP address, e.g. '
-                             '"[\'192.168.1.1\']"')
+                             '"10.1.0.1, 192.168.1.1"')
     args = parser.parse_args()
     if len(args.api_key) < 2:
         print("Invalid api-key specified")
